@@ -3,13 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_perfil">
+    app:startDestination="@id/nav_ubicacion">
+
+    <fragment
+        android:id="@+id/nav_ubicacion"
+        android:name="com.example.laboratorio3.ui.ubicacion.UbicacionFragment"
+        android:label="@string/ubicacion"
+        tools:layout="@layout/fragment_ubicacion" />
 
     <fragment
         android:id="@+id/nav_perfil"
         android:name="com.example.laboratorio3.ui.perfil.PerfilFragment"
         android:label="@string/perfil"
-        tools:layout="@layout/fragment_perfil" />
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_nav_perfil_to_nav_clave"
+            app:destination="@id/nav_clave" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_clave"
+        android:name="com.example.laboratorio3.ui.perfil.ClaveFragment"
+        android:label="@string/clave"
+        tools:layout="@layout/fragment_clave" />
 
     <fragment
         android:id="@+id/nav_inmuebles"

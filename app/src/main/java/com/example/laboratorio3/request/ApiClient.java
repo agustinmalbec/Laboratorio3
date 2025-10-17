@@ -3,6 +3,7 @@ package com.example.laboratorio3.request;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.laboratorio3.model.Propietario;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -10,9 +11,13 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public class ApiClient {
 
@@ -25,7 +30,7 @@ public class ApiClient {
     }
 
     public static String leerToken(Context context) {
-        SharedPreferences sp = context.getSharedPreferences("token.xml", Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences("token", Context.MODE_PRIVATE);
         return sp.getString("token", null);
     }
 
@@ -45,6 +50,16 @@ public class ApiClient {
         @POST("api/propietarios/login")
         Call<String> login(@Field("Usuario") String u, @Field("Clave") String c);
 
+        @GET("api/propietarios")
+        Call<Propietario> obtenerPropietario(@Header("Authorization") String token);
 
+        @PUT("api/propietarios/actualizar")
+        Call<Propietario> actualizarPropietario(@Header("Authorization") String token, @Body Propietario propietario);
+
+        @PUT("api/propietarios/changePassword")
+        Call<Propietario> cambiarContraseña(@Header("Authorization") String token, @Field("currentPassword") String cp, @Field("newPassword") String np);
+
+        @PUT("api/propietarios/email")
+        Call<Propietario> olvideContraseña(@Header("Authorization") String token, @Field("email") String e);
     }
 }

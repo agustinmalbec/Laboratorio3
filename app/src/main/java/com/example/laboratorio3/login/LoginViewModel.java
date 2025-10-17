@@ -40,16 +40,13 @@ public class LoginViewModel extends AndroidViewModel {
                     loginExitoso.postValue(true);
                 } else {
                     mutableMensaje.postValue("Usuario y/o contraseña incorrecta");
-                    loginExitoso.postValue(false);
                 }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 mutableMensaje.postValue("Error de conexión");
-                loginExitoso.postValue(false);
             }
         });
     }
-
 }
