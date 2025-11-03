@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.LoginActivity">
+    tools:context=".login.LoginActivity"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/tvLogin"
@@ -37,7 +38,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/tvLogin"
+        android:textColorHint="@color/black"/>
 
     <EditText
         android:id="@+id/etClaveLogin"
@@ -52,7 +54,8 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etMailLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/etMailLogin"
+        android:textColorHint="@color/black"/>
 
     <Button
         android:id="@+id/btLogin"

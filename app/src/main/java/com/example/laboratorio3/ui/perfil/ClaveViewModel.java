@@ -41,16 +41,8 @@ public class ClaveViewModel extends AndroidViewModel {
         Log.d("salida", propietario.getApellido());
         Log.d("salida", propietario.getEmail());
         if (claveActual.equals(propietario.getClave())){
-            Propietario editado = new Propietario();
-            editado.setIdPropietario(propietario.getIdPropietario());
-            editado.setDni(propietario.getDni());
-            editado.setNombre(propietario.getNombre());
-            editado.setApellido(propietario.getApellido());
-            editado.setEmail(propietario.getEmail());
-            editado.setTelefono(propietario.getTelefono());
-            editado.setClave(claveNueva);
             String token = ApiClient.leerToken(getApplication());
-            Call<Propietario> llamada = ApiClient.getInmobiliariaService().actualizarPropietario("Bearer " +token, editado);
+            Call<Propietario> llamada = ApiClient.getInmobiliariaService().cambiarContraseña("Bearer " + token, claveActual, claveNueva);
             llamada.enqueue(new Callback<Propietario>() {
                 @Override
                 public void onResponse(Call<Propietario> call, Response<Propietario> response) {

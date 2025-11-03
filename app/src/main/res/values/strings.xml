@@ -61,4 +61,14 @@
     </string>
     <string name="ubicacion">Ubicacion</string>
     <string name="clave">Clave</string>
+    <string name="direccion">Direccion</string>
+    <string name="tipo">Tipo</string>
+    <string name="precio">Precio</string>
+    <string name="propietario">Propietario</string>
+    <string name="disponible">Disponible</string>
+    <string name="longitud">Longitud</string>
+    <string name="latitud">Latitud</string>
+    <string name="superficie">Superficie</string>
+    <string name="ambientes">Ambientes</string>
+    <string name="uso">Uso</string>
 </resources>

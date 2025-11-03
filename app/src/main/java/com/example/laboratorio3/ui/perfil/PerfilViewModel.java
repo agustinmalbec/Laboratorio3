@@ -1,15 +1,12 @@
 package com.example.laboratorio3.ui.perfil;
 
 import android.app.Application;
-import android.content.SharedPreferences;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.laboratorio3.model.Propietario;
 import com.example.laboratorio3.request.ApiClient;

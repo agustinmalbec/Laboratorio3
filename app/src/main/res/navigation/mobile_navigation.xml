@@ -31,11 +31,29 @@
         android:id="@+id/nav_inmuebles"
         android:name="com.example.laboratorio3.ui.inmuebles.InmueblesFragment"
         android:label="@string/inmuebles"
-        tools:layout="@layout/fragment_inmuebles" />
+        tools:layout="@layout/fragment_inmuebles" >
+        <action
+            android:id="@+id/action_nav_inmuebles_to_detalleinmuebleFragment"
+            app:destination="@id/detalleinmuebleFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_salir"
         android:name="com.example.laboratorio3.ui.salir.SalirFragment"
         android:label="@string/salir"
         tools:layout="@layout/fragment_salir" />
+    <fragment
+        android:id="@+id/detalleinmuebleFragment"
+        android:name="com.example.laboratorio3.ui.inmuebles.DetalleinmuebleFragment"
+        android:label="Detalle del inmueble"
+        tools:layout="@layout/fragment_detalleinmueble" >
+        <action
+            android:id="@+id/action_detalleinmuebleFragment_to_nav_inmuebles"
+            app:destination="@id/nav_inmuebles" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_agregar_inmueble"
+        android:name="com.example.laboratorio3.ui.inmuebles.AgregarInmuebleFragment"
+        android:label="fragment_agregar_inmueble"
+        tools:layout="@layout/fragment_agregar_inmueble" />
 </navigation>
