@@ -10,9 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.laboratorio3.R;
 import com.example.laboratorio3.databinding.FragmentInmueblesBinding;
 import com.example.laboratorio3.model.Inmueble;
 
@@ -39,7 +41,20 @@ public class InmueblesFragment extends Fragment {
             }
         });
 
+        binding.fabAgregarInmueble.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.nav_agregar_inmueble);
+            }
+        });
+
         return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        vm.leerInmueble();
     }
 
     @Override

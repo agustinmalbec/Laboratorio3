@@ -1,8 +1,6 @@
 package com.example.laboratorio3.ui.perfil;
 
-
 import android.app.Application;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,11 +34,7 @@ public class ClaveViewModel extends AndroidViewModel {
         return mutablePropietario;
     }
 
-    public void cambiarClave(Propietario propietario, String claveActual, String claveNueva){
-        Log.d("salida", propietario.getClave());
-        Log.d("salida", propietario.getApellido());
-        Log.d("salida", propietario.getEmail());
-        if (claveActual.equals(propietario.getClave())){
+    public void cambiarClave(String claveActual, String claveNueva){
             String token = ApiClient.leerToken(getApplication());
             Call<Propietario> llamada = ApiClient.getInmobiliariaService().cambiarContraseña("Bearer " + token, claveActual, claveNueva);
             llamada.enqueue(new Callback<Propietario>() {
@@ -58,10 +52,5 @@ public class ClaveViewModel extends AndroidViewModel {
                     Toast.makeText(getApplication(), "Error del servidor", Toast.LENGTH_SHORT).show();
                 }
             });
-
-        }else{
-            mutableMensaje.postValue("La clave actual no coincide");
-        }
-
     }
 }

@@ -42,11 +42,11 @@ public class PerfilViewModel extends AndroidViewModel {
         }else{
             Propietario editado = new Propietario();
             editado.setIdPropietario(mutablePropietario.getValue().getIdPropietario());
-            editado.setDni(dni);
+            editado.setDni(Integer.parseInt(dni));
             editado.setNombre(nombre);
             editado.setApellido(apellido);
             editado.setEmail(email);
-            editado.setTelefono(telefono);
+            editado.setTelefono(Integer.parseInt(telefono));
             editado.setClave(null);
             String token = ApiClient.leerToken(getApplication());
             Call<Propietario> llamada = ApiClient.getInmobiliariaService().actualizarPropietario("Bearer " +token, editado);

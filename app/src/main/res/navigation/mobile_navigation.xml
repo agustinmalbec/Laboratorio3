@@ -38,6 +38,16 @@
     </fragment>
 
     <fragment
+        android:id="@+id/nav_contratos"
+        android:name="com.example.laboratorio3.ui.contratos.ContratosFragment"
+        android:label="@string/contratos"
+        tools:layout="@layout/fragment_contratos" >
+        <action
+            android:id="@+id/action_nav_contratos_to_detalleContratoFragment"
+            app:destination="@id/nav_detalle_contrato" />
+    </fragment>
+
+    <fragment
         android:id="@+id/nav_salir"
         android:name="com.example.laboratorio3.ui.salir.SalirFragment"
         android:label="@string/salir"
@@ -54,6 +64,20 @@
     <fragment
         android:id="@+id/nav_agregar_inmueble"
         android:name="com.example.laboratorio3.ui.inmuebles.AgregarInmuebleFragment"
-        android:label="fragment_agregar_inmueble"
+        android:label="Agregar inmueble"
         tools:layout="@layout/fragment_agregar_inmueble" />
+    <fragment
+        android:id="@+id/nav_detalle_contrato"
+        android:name="com.example.laboratorio3.ui.contratos.DetalleContratoFragment"
+        android:label="Detalle de contrato"
+        tools:layout="@layout/fragment_agregar_inmueble" >
+        <action
+            android:id="@+id/action_detalleContrato_to_pagosFragment"
+            app:destination="@id/pagosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pagosFragment"
+        android:name="com.example.laboratorio3.ui.pagos.PagosFragment"
+        android:label="Pagos"
+        tools:layout="@layout/fragment_pagos" />
 </navigation>

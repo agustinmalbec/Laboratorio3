@@ -9,13 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.laboratorio3.databinding.FragmentClaveBinding;
-import com.example.laboratorio3.model.Propietario;
 
 public class ClaveFragment extends Fragment {
 
@@ -33,8 +31,7 @@ public class ClaveFragment extends Fragment {
             public void onClick(View v) {
                 String claveActual = binding.etClaveActual.getText().toString();
                 String claveNueva = binding.etClaveNueva.getText().toString();
-                Propietario prop = (Propietario) getArguments().getSerializable("propietario", Propietario.class);
-                vm.cambiarClave(prop, claveActual, claveNueva);
+                vm.cambiarClave(claveActual, claveNueva);
             }
         });
 

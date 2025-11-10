@@ -48,5 +48,18 @@ public class LoginActivity extends AppCompatActivity {
                 binding.tvMensajeLogin.setText(mensaje);
             }
         });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        vm.activarLecturas();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        vm.desactivarLecturas();
     }
 }

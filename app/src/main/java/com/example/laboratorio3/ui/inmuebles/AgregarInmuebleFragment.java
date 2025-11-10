@@ -19,6 +19,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.laboratorio3.databinding.FragmentAgregarInmuebleBinding;
 
@@ -63,6 +64,13 @@ public class AgregarInmuebleFragment extends Fragment {
                         binding.etTipo.getText().toString(),
                         binding.etSuperficie.getText().toString(),
                         binding.etAmbientes.getText().toString());
+            }
+        });
+
+        vm.getMutableMensaje().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String mensaje) {
+                Toast.makeText(getContext(), mensaje, Toast.LENGTH_SHORT).show();
             }
         });
 

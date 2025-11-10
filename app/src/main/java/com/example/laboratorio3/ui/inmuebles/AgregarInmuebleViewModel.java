@@ -32,29 +32,50 @@ import retrofit2.Response;
 
 public class AgregarInmuebleViewModel extends AndroidViewModel {
     private MutableLiveData<Uri> mutableUri = new MutableLiveData<>();
+    private MutableLiveData<String> mutableMensaje = new MutableLiveData<>();
     public AgregarInmuebleViewModel(@NonNull Application application) {
         super(application);
     }
     public LiveData<Uri> getMutableUri(){
         return mutableUri;
     }
+    public LiveData<String> getMutableMensaje() {
+        return mutableMensaje;
+    }
 
     public void cargarInmueble(String direccion, String precio,String uso, String tipo, String superficie, String ambientes){
         if (direccion.isEmpty() || precio.isEmpty() || uso.isEmpty() || tipo.isEmpty() || superficie.isEmpty() || ambientes.isEmpty()){
-            Toast.makeText(getApplication(), "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
+            mutableMensaje.postValue("Todos los campos son obligatorios");
             return;
         }
-        String token = ApiClient.leerToken(getApplication());
+
         Inmueble inmueble = new Inmueble();
+
+        // --- 4. SOLUCIÓN: Bloque try-catch para evitar NumberFormatException ---
+        try {
+            inmueble.setValor(Double.parseDouble(precio));
+            inmueble.setSuperficie(Integer.parseInt(superficie));
+            inmueble.setAmbientes(Integer.parseInt(ambientes));
+        } catch (NumberFormatException e) {
+            mutableMensaje.postValue("Error: 'Precio', 'Superficie' y 'Ambientes' deben ser números.");
+            return; // Detenemos la ejecución si los números son inválidos
+        }
+        // --- FIN DE LA SOLUCIÓN ---
+
         inmueble.setDireccion(direccion);
-        inmueble.setValor(Double.parseDouble(precio));
         inmueble.setUso(uso);
         inmueble.setTipo(tipo);
-        inmueble.setSuperficie(Integer.parseInt(superficie));
-        inmueble.setAmbientes(Integer.parseInt(ambientes));
         inmueble.setDisponible(false);
 
         byte[] imagen = transformarImagen();
+
+        // 5. Comprobamos que la imagen no sea nula (transformarImagen la controla)
+        if (imagen == null) {
+            mutableMensaje.postValue("Debe seleccionar una imagen válida.");
+            return;
+        }
+
+        String token = ApiClient.leerToken(getApplication());
         String inmuebleJson = new Gson().toJson(inmueble);
 
         RequestBody inmuebleBody = RequestBody.create(inmuebleJson, MediaType.parse("application/json; charset=utf-8"));
@@ -87,6 +108,9 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
     private byte[] transformarImagen(){
         try {
             Uri uri = mutableUri.getValue();
+            if (uri == null) {
+                return null;
+            }
             InputStream inputStream = getApplication().getContentResolver().openInputStream(uri);
             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

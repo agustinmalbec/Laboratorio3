@@ -23,10 +23,6 @@ public class DetalleinmuebleFragment extends Fragment {
     private DetalleinmuebleViewModel vm;
     private FragmentDetalleinmuebleBinding binding;
 
-    public static DetalleinmuebleFragment newInstance() {
-        return new DetalleinmuebleFragment();
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {

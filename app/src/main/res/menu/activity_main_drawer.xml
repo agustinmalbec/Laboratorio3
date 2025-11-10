@@ -21,6 +21,10 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Agregar inmueble" />
         <item
+            android:id="@+id/nav_contratos"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/contratos" />
+        <item
             android:id="@+id/nav_salir"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/salir" />

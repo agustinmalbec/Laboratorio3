@@ -6,15 +6,15 @@ public class Propietario implements Serializable {
     private int idPropietario;
     private String nombre;
     private String apellido;
-    private String dni;
-    private String telefono;
+    private int dni;
+    private int telefono;
     private String email;
     private String clave;
 
     public Propietario() {
     }
 
-    public Propietario(int idPropietario, String nombre, String apellido, String dni, String telefono, String email, String clave) {
+    public Propietario(int idPropietario, String nombre, String apellido, int dni, int telefono, String email, String clave) {
         this.idPropietario = idPropietario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -48,19 +48,19 @@ public class Propietario implements Serializable {
         this.apellido = apellido;
     }
 
-    public String getDni() {
+    public int getDni() {
         return dni;
     }
 
-    public void setDni(String dni) {
+    public void setDni(int dni) {
         this.dni = dni;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 

@@ -3,7 +3,9 @@ package com.example.laboratorio3.request;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.laboratorio3.model.Contrato;
 import com.example.laboratorio3.model.Inmueble;
+import com.example.laboratorio3.model.Pago;
 import com.example.laboratorio3.model.Propietario;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -25,6 +27,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public class ApiClient {
 
@@ -54,31 +57,44 @@ public class ApiClient {
 
     public interface InmobiliariaService{
         @FormUrlEncoded
-        @POST("api/propietarios/login")
+        @POST("api/Propietarios/login")
         Call<String> login(@Field("Usuario") String u, @Field("Clave") String c);
 
-        @GET("api/propietarios")
+        @GET("api/Propietarios")
         Call<Propietario> obtenerPropietario(@Header("Authorization") String token);
 
-        @PUT("api/propietarios/actualizar")
+        @PUT("api/Propietarios/actualizar")
         Call<Propietario> actualizarPropietario(@Header("Authorization") String token, @Body Propietario propietario);
 
-        @PUT("api/propietarios/changePassword")
+        @FormUrlEncoded
+        @PUT("api/Propietarios/changePassword")
         Call<Propietario> cambiarContraseña(@Header("Authorization") String token, @Field("currentPassword") String cp, @Field("newPassword") String np);
 
-        @PUT("api/propietarios/email")
+        @FormUrlEncoded
+        @PUT("api/Propietarios/email")
         Call<Propietario> olvideContraseña(@Header("Authorization") String token, @Field("email") String e);
 
-        @GET("api/inmuebles")
+        @GET("api/Inmuebles")
         Call<List<Inmueble>> obtenerInmuebles(@Header("Authorization") String token);
 
-        @PUT("api/inmuebles/actualizar")
+        @PUT("api/Inmuebles/actualizar")
         Call<Inmueble> actualizarInmueble(@Header("Authorization") String token, @Body Inmueble inmueble);
 
         @Multipart
-        @POST("api/inmuebles/cargar")
+        @POST("api/Inmuebles/cargar")
         Call<Inmueble> cargarInmueble(@Header("Authorization") String token,
                                       @Part MultipartBody.Part imagen,
                                       @Part("inmueble")RequestBody inmueble);
+
+        @GET("api/Inmuebles/GetContratoVigente")
+        Call<List<Inmueble>> obtenerInmueblesConContratoVigente(@Header("Authorization") String token);
+
+        @GET("api/contratos/inmueble/{id}")
+        Call<Contrato> obtenerContratoPorInmueble(@Header("Authorization") String token,
+                                                  @Path("id") int idInmueble);
+
+        @GET("api/Pagos/contrato/{id}")
+        Call<List<Pago>> obtenerPagosPorContrato(@Header("Authorization") String token,
+                                                 @Path("id") int idContrato);
     }
 }
